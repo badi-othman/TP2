@@ -13,7 +13,7 @@ En stockant les données sur MySQL.</p>
 <h3>Rendez-Vous</h3>
 <img src="Captures/cap3.png">
 <h3>Consultation</h3>
-<img src="Captures/cap4.png">
+<img src="Captures/Cap4.pngap4.png">
 <h2>Implementation H2 et MySQL</h2>
 <img src="Captures/cap5.png">
 <h2>Implementation des méthodes:</h2>
