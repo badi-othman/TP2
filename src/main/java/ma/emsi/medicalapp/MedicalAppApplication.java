@@ -31,21 +31,22 @@ public class MedicalAppApplication {
                             RendezVousRepository rendezvousRepository,
                             ConsultationRepository consultationRepository){
         return args -> {
-            //Ajout des patient,medecins,rdv et consultation
-            Stream.of("Goku","Vegeta","Piccolo").forEach(name->{
-                Patient patient=new Patient();
-                patient.setNom(name);
-                patient.setAnneeNaissance(1990);
-                patient.setMalade(true);
-                patientRepository.save(patient);
-            });
 
-            Stream.of("Gon","Kurapika","Melody").forEach(name->{
+            Stream.of("Bob","Dan","Jake").forEach(name->{
                 Medecin medecin=new Medecin();
                 medecin.setNom(name);
                 medecin.setEmail(name+"@gmail.com");
-                medecin.setSpecialite(Math.random()>0.5?"Cardiologue":"Dentiste");
+                medecin.setSpecialite(Math.random()>0.5?"Neurologue":"Dentiste");
                 medecinRepository.save(medecin);
+            });
+
+
+            Stream.of("Adam","Joe","Ken").forEach(name->{
+                Patient patient=new Patient();
+                patient.setNom(name);
+                patient.setAnneeNaissance(1987);
+                patient.setMalade(true);
+                patientRepository.save(patient);
             });
 
             RendezVous rdv=new RendezVous();
@@ -56,23 +57,25 @@ public class MedicalAppApplication {
             rendezvousRepository.save(rdv);
 
             Consultation clt=new Consultation();
-            clt.setRapport(Math.random()<0.5?"passer des analyses":"sain");
+            clt.setRapport(Math.random()<0.5?"passez analyses":"sain");
             clt.setDateConsultation(new Date());
             clt.setRendezVous(rendezvousRepository.findById(1L).get());
             consultationRepository.save(clt);
 
-            //chercher un patient avec son id
+
             Patient patient1=patientRepository.findById(3L).get();
-            System.out.println("************");
+            System.out.println("---------------");
             System.out.println(patient1.getId());
             System.out.println(patient1.getNom());
             System.out.println(patient1.getAnneeNaissance());
-            System.out.println("*************");
-            //modifier un patient
+            System.out.println("---------------");
+
+
             Patient patient2=patientRepository.findById(3L).get();
-            patient2.setNom("Son");
+            patient2.setNom("Adam");
             System.out.println(patient1.toString());
-            //supprimer un patient
+
+
             patientRepository.delete(patient1);
         };
 
